@@ -1,0 +1,245 @@
+.navbar-container {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    z-index: 1000;
+    opacity: 0;
+  }
+  
+  .animate-slideDown {
+    animation: slideDown 0.5s ease-out forwards;
+  }
+  
+  .animate-fadeIn {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out 0.3s forwards;
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .navbar {
+    width: 90%;
+    max-width: 1200px;
+    background: white;
+    border-radius: 9999px;
+    padding: 9px 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Logo styles */
+  .logo-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    z-index: 2;
+  }
+  
+  .logo-image {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+  }
+  
+  /* Desktop Navigation Links */
+  .desktop-nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  
+  .nav-link {
+    color: #1f2937;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .nav-link:hover {
+    color: #c9a760;
+    border-bottom: 2px solid #c9a760 ;
+    margin-top: 2px;
+  }
+  
+  /* Desktop Right Buttons */
+  .desktop-right-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  
+  .contact-button {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    border: 1px solid #6f7173;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    gap: 8px;
+    transition: all 0.2s;
+  }
+  
+  .contact-button:hover {
+    background-color: #efefef;
+  }
+  
+  .login-button {
+    padding: 8px 20px;
+    border-radius: 9999px;
+    background-color: #b68319;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+  
+  .login-button:hover {
+    background-color: #c9a760;
+  }
+  
+  /* Mobile Menu Button */
+  .menu-button {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #1f2937;
+    padding: 4px;
+    z-index: 2;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    padding: 80px 20px 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .mobile-menu.active {
+    transform: translateX(0);
+  }
+  
+  .mobile-menu .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .mobile-menu .mobile-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Mobile Menu Overlay */
+  .mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 1024px) {
+    .desktop-nav-links {
+      gap: 24px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 12px 20px;
+    }
+  
+    .menu-button {
+      display: block;
+    }
+  
+    .desktop-nav-links,
+    .desktop-right-buttons {
+      display: none;
+    }
+  
+    .mobile-menu {
+      display: flex;
+    }
+  
+    .logo-container {
+      position: relative;
+      left: 0;
+      transform: none;
+    }
+  
+    .navbar-content {
+      justify-content: space-between;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navbar-container {
+      top: 8px;
+      padding: 0 12px;
+    }
+  
+    .navbar {
+      padding: 10px 16px;
+    }
+  
+    .logo-image {
+      height: 28px;
+    }
+  }

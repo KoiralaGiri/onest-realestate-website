@@ -1,0 +1,208 @@
+.values-section {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f9f5eb 0%, #fff 100%);
+    padding: 4rem 0;
+  }
+  
+  .particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .particle {
+    position: absolute;
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(1px);
+  }
+  .particle:hover {
+    box-shadow: 0 0 20px 5px rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+
+  }
+  
+  .values-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    z-index: 1;
+  }
+  
+  .values-header {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+  
+  .values-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.2;
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .value-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(184, 134, 11, 0.1);
+  }
+  
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(184, 134, 11, 0.3);
+  }
+  
+  .value-icon {
+    color: #B8860B;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    background: rgba(184, 134, 11, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+  }
+  
+  .value-card:hover .value-icon {
+    background: rgba(184, 134, 11, 0.2);
+    transform: scale(1.1);
+  }
+  
+  .value-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .value-description {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .values-details {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .values-subtitle {
+    font-size: 2rem;
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 2rem;
+  }
+  
+  .values-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  
+  .values-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #4a4a4a;
+    line-height: 1.6;
+  }
+  
+  .values-list li::before {
+    content: "•";
+    color: #B8860B;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+  
+  .values-description {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  
+  .playbook-button {
+    background: transparent;
+    border: 2px solid #B8860B;
+    color: #B8860B;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .playbook-button:hover {
+    background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+  }
+  
+  @media (max-width: 768px) {
+    .values-content {
+      padding: 1.5rem;
+    }
+  
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .values-title {
+      font-size: 2.5rem;
+    }
+  
+    .value-card {
+      padding: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .values-title {
+      font-size: 2rem;
+    }
+  
+    .values-subtitle {
+      font-size: 1.75rem;
+    }
+  
+    .value-card {
+      padding: 1.25rem;
+    }
+  }
+
+
+.TypeAnimation {
+    color: #B8860B;
+}

@@ -1,0 +1,423 @@
+.seller-page {
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Hero Section */
+  .seller-page .hero-section {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-image: url('../images/pngtree-breathtaking-3d-rendering-of-oceanfront-villa-with-serene-sunset-view-and-picture-image_5824264.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: -80px;
+    padding-top: 80px;
+  }
+  
+  .seller-page .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .seller-page .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 4rem 2rem;
+  }
+  
+  .seller-page .text-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+  
+  /* Main Title */
+  .seller-page .main-title {
+    margin-top: 2rem;
+  }
+  
+  .seller-page .main-title h1 {
+    font-size: 3.5rem;
+    font-weight: normal;
+    line-height: 1.2;
+    letter-spacing: 2px;
+  }
+  
+  /* Sub Title */
+  .seller-page .sub-title {
+    font-size: 2.75rem;
+    font-weight: normal;
+    line-height: 1.3;
+    letter-spacing: 1.5px;
+  }
+  
+  .seller-page .sub-title div {
+    margin-bottom: 0.5rem;
+  }
+  
+  .seller-page .bold {
+    font-weight: 700;
+  }
+  
+  /* Investment Line */
+  .seller-page .investment-line {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 1rem;
+  }
+  
+  .seller-page .animated-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: #B8860B;
+    animation: expandLine 1.5s ease-out forwards;
+    transform-origin: left;
+  }
+  
+  /* Estimate Button */
+  .seller-page .button-container {
+    margin-top: 2rem;
+  }
+  
+  .seller-page .estimate-button {
+    background-color: #B8860B;
+    color: white;
+    border: none;
+    padding: 1.2rem 3rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .seller-page .estimate-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: 0.5s;
+  }
+  
+  .seller-page .estimate-button:hover {
+    background-color: #966F08;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(184, 134, 11, 0.4);
+  }
+  
+  .seller-page .estimate-button:hover::before {
+    left: 100%;
+  }
+  
+  @keyframes expandLine {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  /* Info Section */
+  .seller-page .info-section {
+    background-color: #F9FAFB;
+    padding: 5rem 1rem;
+  }
+  
+  .seller-page .info-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .seller-page .info-heading {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+  
+  .seller-page .info-description {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #4B5563;
+    margin-bottom: 3rem;
+  }
+  
+  .seller-page .value-button {
+    background-color: #B8860B;
+    color: white;
+    border: none;
+    padding: 1rem 2.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+  }
+  
+  .seller-page .value-button:hover {
+    background-color: #966F08;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+  }
+  
+  /* Animations */
+  .seller-page .animate-fade {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.7s ease-out;
+  }
+  
+  .seller-page .fade-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Media Queries */
+  @media (max-width: 1200px) {
+    .seller-page .main-title h1 {
+      font-size: 4rem;
+    }
+    
+    .seller-page .sub-title {
+      font-size: 2.5rem;
+    }
+  
+    .seller-page .estimate-button {
+      padding: 1.1rem 2.75rem;
+      font-size: 1.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .seller-page .hero-content {
+      padding: 3rem 1.5rem;
+    }
+  
+    .seller-page .main-title h1 {
+      font-size: 3rem;
+    }
+    
+    .seller-page .sub-title {
+      font-size: 2rem;
+    }
+    
+    .seller-page .text-wrapper {
+      gap: 3rem;
+    }
+    
+    .seller-page .info-heading {
+      font-size: 1.75rem;
+    }
+  
+    .seller-page .estimate-button {
+      padding: 1rem 2.5rem;
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .seller-page .hero-content {
+      padding: 2rem 1rem;
+    }
+  
+    .seller-page .main-title h1 {
+      font-size: 2.5rem;
+    }
+    
+    .seller-page .sub-title {
+      font-size: 1.75rem;
+    }
+    
+    .seller-page .text-wrapper {
+      gap: 2rem;
+    }
+    
+    .seller-page .estimate-button {
+      padding: 0.9rem 2.25rem;
+      font-size: 1rem;
+    }
+  
+    .seller-page .value-button {
+      padding: 0.875rem 2rem;
+      font-size: 1rem;
+    }
+  }
+
+
+  .why-onest-section {
+    position: relative;
+    background: #F9FAFB;
+    overflow: hidden;
+    padding: 6rem 1.5rem;
+  }
+  
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(to right, rgba(188, 141, 39, 0.1));
+    filter: blur(1px);
+    transition: all 1s ease-out;
+  }
+  
+  .why-onest-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .why-onest-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    color: #DAA520;
+  }
+  
+  .why-onest-subtitle {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #DAA520;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .why-onest-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, hsl(0, 4%, 95%), #fbfaf9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #DAA520;
+  }
+  
+  .why-onest-description {
+    color: #DAA520;
+    font-size: 1.125rem;
+    max-width: 36rem;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  
+  .feature-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+  
+  .feature-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border: px solid rgba(229, 231, 235, 1);
+    backdrop-filter: blur(8px);
+    transition: all 0.5s ease;
+  }
+  
+  @media (min-width: 768px) {
+    .feature-card {
+      width: 18rem;
+    }
+    
+    .why-onest-title {
+      font-size: 4rem;
+    }
+  }
+  
+  .feature-card:hover {
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+  }
+  
+  .card-background {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4), rgba(184, 134, 11, 0.1));
+    border-radius: 1rem;
+    z-index: -1;
+  }
+  
+  .icon-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .icon-background {
+    position: absolute;
+    inset: -0.75rem;
+    background: linear-gradient(to bottom right, rgba(184, 134, 11, 0.2), rgba(184, 134, 11, 0.2));
+    border-radius: 50%;
+    filter: blur(4px);
+  }
+  
+  .icon-wrapper {
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(184, 134, 11, 0.1);
+  }
+  
+  .feature-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #B8860B, #DAA520);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .feature-description {
+    text-align: center;
+    color: #4a4a4a;
+    line-height: 1.6;
+    font-size: 1.125rem;
+    font-weight: 300;
+  }
+  

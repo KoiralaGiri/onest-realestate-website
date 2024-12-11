@@ -1,0 +1,133 @@
+.timeline-container {
+    width: 100%;
+    background-color: rgba(180, 83, 9, 0.2);
+    padding: 2rem;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+  
+  .timeline-wrapper {
+    max-width: 72rem;
+    margin: 0 auto;
+  }
+  
+  .timeline-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+  
+  .timeline-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    color: white;
+    font-weight: 500;
+  }
+  
+  .navigation-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .nav-button {
+    padding: 0.5rem;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .nav-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: white;
+  }
+  
+  .timeline-cards {
+    display: flex;
+    gap: 1.5rem;
+    overflow: hidden;
+  }
+  
+  .timeline-card {
+    flex-shrink: 0;
+    width: 24rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.7s ease;
+  }
+  
+  .timeline-card.visible {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .year {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-weight: 700;
+    color: rgb(217, 119, 6);
+    margin-bottom: 1rem;
+  }
+  
+  .events {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .event {
+    color: rgb(217, 119, 6);
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .timeline-container {
+      padding: 1rem;
+    }
+    
+    .timeline-card {
+      width: 100%;
+      max-width: 20rem;
+    }
+    
+    .year {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .timeline-header {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    
+    .timeline-title {
+      font-size: 1.5rem;
+    }
+    
+    .timeline-card {
+      max-width: 16rem;
+    }
+  }

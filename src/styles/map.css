@@ -1,0 +1,27 @@
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 8px rgba(182, 131, 25, 0.5));
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.region-path {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.region-path:hover {
+  filter: drop-shadow(0 0 8px rgba(182, 131, 25, 0.5));
+}
+
+.region-path.active {
+  fill: #b68319;
+  stroke: white;
+  filter: drop-shadow(0 0 8px rgba(182, 131, 25, 0.5));
+}

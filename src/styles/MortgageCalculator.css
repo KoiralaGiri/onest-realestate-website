@@ -1,0 +1,66 @@
+/* Custom styles for Mortgage Calculator */
+.input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #F59E0B;
+    pointer-events: none;
+  }
+  
+  .mortgage-input {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .mortgage-input:focus {
+    border-color: #F59E0B;
+    box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.1);
+  }
+  
+  .result-card {
+    background: linear-gradient(145deg, #1F2937 0%, #111827 100%);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  .stat-card {
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .calculator-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .result-card {
+      margin-top: 2rem;
+    }
+  }
+  
+  /* Animation for number changes */
+  .number-animation {
+    transition: all 0.3s ease-out;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #4B5563;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #6B7280;
+  }
