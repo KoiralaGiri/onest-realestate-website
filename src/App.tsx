@@ -4,7 +4,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 // Shared Components
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar';
 import Footer from './components/Footer';
 import { RelocationSection } from './components/RelocationSection';
 
@@ -26,9 +26,9 @@ import { SectionDivider } from './components/SectionDivider';
 
 // Additional Pages
 import AboutUs from './components/aboutus';
-import SellerPage from './components/SellerPage.js';
-import Listings from './components/Listing.js';
-import ToolsPage from './components/ui/tools.tsx';
+import SellerPage from './components/SellerPage';
+import Listings from './components/Listing';
+import ToolsPage from './components/ui/tools';
 
 // Placeholder Pages
 const About = () => (
