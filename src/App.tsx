@@ -5,8 +5,7 @@ import 'aos/dist/aos.css';
 
 // Shared Components
 import Navbar from './components/navbar';
-import Footer from './components/Footer';
-import { RelocationSection } from './components/RelocationSection';
+import Footer from './components/Footer'
 
 // Homepage Components
 import HeroBanner1 from './components/HeroBanner1';
@@ -14,6 +13,7 @@ import ExploreNova from './components/ExploreNova';
 import BentoGrid from './components/BentoGrid';
 import HandpickedHomes from './components/HandpickedHomes';
 import Testimonials from './components/Testimonials';
+import RelocationSection1 from './components/RelocationSection1';
 import AppSection from './components/AppSection';
 
 // Communities Page Components
@@ -23,6 +23,7 @@ import { FeaturedCommunities } from './components/FeaturedCommunities';
 import { NeighborhoodMap } from './components/NeighborhoodMap';
 import { MarketInsights } from './components/MarketInsights';
 import { SectionDivider } from './components/SectionDivider';
+import RelocationSection2 from './components/RelocationSection2';
 
 // Additional Pages
 import AboutUs from './components/aboutus';
@@ -63,7 +64,7 @@ const Home = () => {
       <BentoGrid />
       <HandpickedHomes />
       <Testimonials />
-      <RelocationSection />
+      <RelocationSection1 />
       <AppSection />
     </main>
   );
@@ -93,7 +94,7 @@ const Communities = () => {
           fromColor="#111827"
           toColor="#111827"
         />
-        <RelocationSection />
+        <RelocationSection2 />
       </div>
     </main>
   );

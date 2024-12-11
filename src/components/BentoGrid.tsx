@@ -16,8 +16,8 @@ const BentoItem = ({
   const sizeClasses = {
     hero: 'col-span-12',          // Full width for hero
     large: 'col-span-6',          // Half width (Market Trends)
-    medium: 'col-span-4',         // One third (Area Guide)
-    regularRight: 'col-span-4',   // Investment ROI section
+    medium: 'col-span-6',         // One third (Area Guide)
+    regularRight: 'col-span-6',   // Investment ROI section
     regularLeft: 'col-span-8',    // Virtual Tours section
     regular: 'col-span-4',        // New Listings
     bottom: 'col-span-8',         // Price History

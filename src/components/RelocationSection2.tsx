@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Users, Phone, Play } from 'lucide-react';
 import { BackgroundAnimation } from './BackgroundAnimation';
 
-export const RelocationSection = () => {
+export const RelocationSection2 = () => {
   return (
     <div className="relative bg-gray-900 text-white py-24 overflow-hidden">
       <BackgroundAnimation />
@@ -94,3 +94,5 @@ export const RelocationSection = () => {
     </div>
   );
 };
+
+export default RelocationSection2;
