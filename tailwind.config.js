@@ -31,6 +31,10 @@ export default {
         'gradient-x': 'gradient-x 15s ease infinite',
         'gradient-y': 'gradient-y 15s ease infinite',
         'gradient-xy': 'gradient-xy 15s ease infinite',
+        fadeIn: 'fadeIn 0.6s ease-out forwards',
+        // New animations for navbar
+        slideDown: 'slideDown 0.4s ease-out',
+        fadeInUp: 'fadeInUp 0.4s ease-out',
       },
       // Keyframes
       keyframes: {
@@ -76,6 +80,27 @@ export default {
             'background-position': 'right center',
           },
         },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        // New keyframes for navbar
+        slideDown: {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(0)' }
+        },
+        fadeInUp: {
+          '0%': { 
+            opacity: '0',
+            transform: 'translateY(10px)'
+          },
+          '100%': { 
+            opacity: '1',
+            transform: 'translateY(0)'
+
+    
+          }
+        }
       },
       // Background patterns
       backgroundImage: {

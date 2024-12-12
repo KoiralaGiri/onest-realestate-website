@@ -1,109 +1,94 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Logo from '../images/onest.png';
-import '../styles/footer.css';
+import { Home } from 'lucide-react';
 
-const Footer = () => {
+interface AnimatedLinkProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}
+
+const AnimatedFooter: React.FC = () => {
+  const AnimatedLink = ({ href, children, className = "" }: AnimatedLinkProps) => {
+    return (
+      <a
+        href={href}
+        className={`group relative inline-block text-gray-400 hover:text-white transition-all duration-500 ${className}`}
+      >
+        <span className="relative block overflow-hidden">
+          <span className="absolute inset-0 h-full w-full bg-yellow-500 transform translate-y-full transition-transform duration-300 group-hover:translate-y-0 z-[-1]" />
+          <span className="relative">{children}</span>
+        </span>
+      </a>
+    );
+  };
+
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        {/* Top Section */}
-        <div className="footer-grid">
-          {/* About Us Section */}
-          <div className="footer-section">
-            <img src={Logo} alt="NEST Logo" className="footer-logo" />
-            <h3>About Us</h3>
-            <p className="footer-description">
-              Transforming lives through real estate.
-            </p>
-            <Link to="/learn-more" className="footer-link">
-              Learn More
-            </Link>
-            <Link to="/contact" className="footer-link">
-              Contact Us
-            </Link>
+    <footer className="relative bg-[#1B1B1B] text-white">
+      <div className="container mx-auto px-6 py-20">
+        {/* Main Navigation and CTA Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 max-w-6xl mx-auto gap-x-16 gap-y-12">
+          {/* Left Column - Buyers */}
+          <div className="text-center md:text-left">
+            <h3 className="text-yellow-500 font-medium text-xl mb-6">Buyers</h3>
+            <div className="flex flex-col space-y-4">
+              <AnimatedLink href="/email-marketing">Email Marketing</AnimatedLink>
+              <AnimatedLink href="/campaigns">Campaigns</AnimatedLink>
+              <AnimatedLink href="/branding">Branding</AnimatedLink>
+              <AnimatedLink href="/offline">Offline</AnimatedLink>
+            </div>
           </div>
 
-          {/* Buyers Section */}
-          <div className="footer-section">
-            <h3>Buyers</h3>
-            <ul className="footer-links">
-              <li><Link to="/email-marketing">Email Marketing</Link></li>
-              <li><Link to="/campaigns">Campaigns</Link></li>
-              <li><Link to="/branding">Branding</Link></li>
-              <li><Link to="/offline">Offline</Link></li>
-            </ul>
+          {/* Center Column - CTA Section */}
+          <div className="text-center">
+            <p className="text-gray-400 mb-3">Are you ready?</p>
+            <h2 className="text-4xl font-light mb-8 tracking-wide">Let's get started</h2>
+            <div className="flex flex-col items-center space-y-4">
+              <button
+                className="group relative overflow-hidden bg-yellow-500 hover:bg-yellow-400 text-black px-8 py-3 rounded-lg transition-all duration-300"
+                type="button"
+              >
+                <span className="relative inline-flex items-center gap-2">
+                  <span className="block group-hover:scale-110 transition-transform duration-300">
+                    Get started
+                  </span>
+                  <Home className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
+                </span>
+              </button>
+              <AnimatedLink href="/contact" className="text-sm">
+                Contact Us
+              </AnimatedLink>
+            </div>
           </div>
 
-          {/* Sellers Section */}
-          <div className="footer-section">
-            <h3>Sellers</h3>
-            <ul className="footer-links">
-              <li><Link to="/our-story">Our Story</Link></li>
-              <li><Link to="/benefits">Benefits</Link></li>
-              <li><Link to="/team">Team</Link></li>
-              <li><Link to="/careers">Careers</Link></li>
-            </ul>
+          {/* Right Column - Sellers */}
+          <div className="text-center md:text-right">
+            <h3 className="text-yellow-500 font-medium text-xl mb-6">Sellers</h3>
+            <div className="flex flex-col space-y-4">
+              <AnimatedLink href="/our-story">Our Story</AnimatedLink>
+              <AnimatedLink href="/benefits">Benefits</AnimatedLink>
+              <AnimatedLink href="/team">Team</AnimatedLink>
+              <AnimatedLink href="/careers">Careers</AnimatedLink>
+            </div>
           </div>
-
-          {/* Communities Section */}
-          <div className="footer-section">
-            <h3>Communities</h3>
-            <p>Discover the ONEST difference—where exceptional service, community values, and innovative solutions come together.</p>
-            <Link to="/read-playbook" className="footer-link">
-              Read our oNest Playbook
-            </Link>
-          </div>
-
-          {/* Tools Section */}
-          <div className="footer-section">
-            <h3>Tools</h3>
-            <ul className="footer-links">
-              <li><Link to="/audacity">Audacity</Link></li>
-              <li><Link to="/resilience">Resilience</Link></li>
-              <li><Link to="/together">Together</Link></li>
-            </ul>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="cta-section">
-          <h2>Are you ready?</h2>
-          <h2>Let's get started</h2>
-          <Link to="/get-started" className="cta-btn">
-            Get Started 🏠
-          </Link>
-          <Link to="/contact" className="cta-link">Contact Us</Link>
-        </div>
-
-        {/* Team Section */}
-        <div className="team-section">
-          <h3>Team oNest</h3>
-          <ul className="team-grid">
-            <li>Anjana Budhathoki - Principal Broker</li>
-            <li>Suresh Sapkota - Associate Broker</li>
-            <li>Suman Mahara - Supervising Broker</li>
-            <li>Prayash Bhusal - REALTOR®</li>
-            <li>Tek Narayan Yadav - REALTOR®</li>
-            <li>Deepak Sharma - REALTOR®</li>
-            <li>Purna Shahi - REALTOR®</li>
-            <li>Sarah Nazeer - REALTOR®</li>
-            <li>Sumit Sanjel - REALTOR®</li>
-            <li>Abhaya Karki - REALTOR®</li>
-          </ul>
-          <Link to="/all-agents" className="footer-link">
-            See All Agents
-          </Link>
-          <Link to="/careers" className="footer-link">
-            Join Our Team
-          </Link>
         </div>
 
         {/* Bottom Section */}
-        <div className="footer-bottom">
-          <img src={Logo} alt="eNest Logo" className="footer-logo" />
-          <div className="copyright">
-            Copyright © {new Date().getFullYear()} eNest Real Estate.
+        <div className="mt-16 text-center">
+          <div className="text-yellow-500 text-3xl font-bold mb-4 tracking-wider">ONEST</div>
+          <p className="text-gray-500 text-sm mb-4">
+            Copyright © {new Date().getFullYear()} oNest Real Estate.
+          </p>
+          <div className="flex justify-center space-x-6">
+            <AnimatedLink href="/privacy-policy">Privacy Policy</AnimatedLink>
+            <AnimatedLink href="/terms-of-service">Terms of Service</AnimatedLink>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-[#1B1B1B] border-t border-gray-800 py-4 px-6">
+          <div className="flex justify-around">
+            <AnimatedLink href="/buyers">Buyers</AnimatedLink>
+            <AnimatedLink href="/sellers">Sellers</AnimatedLink>
           </div>
         </div>
       </div>
@@ -111,4 +96,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default AnimatedFooter;
