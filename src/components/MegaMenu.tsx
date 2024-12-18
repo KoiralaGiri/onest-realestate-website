@@ -1,134 +1,177 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ChevronRight } from 'lucide-react';
-import { Player } from '@lottiefiles/react-lottie-player';
-import FeaturedCard from './FeaturedCard';
-import { menuContent } from '../data/menuContent';
+import { menuContent, iconMap, MenuType } from '../types/menuTypes';
 
 interface MegaMenuProps {
   isOpen: boolean;
-  type: keyof typeof menuContent;
+  type: MenuType;
   onClose: () => void;
+  navItemRect?: DOMRect | null;
 }
 
+const MENU_WIDTH = 600;
+
 const menuVariants = {
-  initial: {
+  initial: { 
     opacity: 0,
-    scaleY: 0,
-    transformOrigin: 'top'
+    y: -4,
+    scaleX: 0.98,
+    scaleY: 0.98,
+    transformOrigin: "top"
   },
-  animate: {
+  animate: { 
     opacity: 1,
+    y: 0,
+    scaleX: 1,
     scaleY: 1,
     transition: {
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.2,
+      ease: [0.4, 0, 0.2, 1],
       staggerChildren: 0.05
     }
   },
   exit: {
     opacity: 0,
-    scaleY: 0,
+    y: -4,
     transition: {
-      duration: 0.3,
-      ease: [0.22, 1, 0.36, 1]
+      duration: 0.15,
+      ease: [0.4, 0, 0.2, 1]
     }
   }
 };
 
-const linkVariants = {
-  initial: { opacity: 0, x: -20 },
-  animate: { opacity: 1, x: 0 },
-  hover: { x: 10, color: '#b68319' }
+const itemVariants = {
+  initial: { 
+    opacity: 0,
+    y: 8,
+  },
+  animate: { 
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.2,
+    }
+  }
 };
 
-const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, type, onClose }) => {
-  const content = menuContent[type];
+const iconVariants = {
+  initial: { 
+    rotate: 0,
+    scale: 1
+  },
+  hover: { 
+    rotate: 360,
+    scale: 1.1,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut"
+    }
+  }
+};
 
+const MegaMenu: React.FC<MegaMenuProps> = ({ isOpen, type, onClose, navItemRect }) => {
+  const [menuPosition, setMenuPosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (navItemRect) {
+      const viewportWidth = window.innerWidth;
+      let xPos = navItemRect.left + (navItemRect.width / 2) - (MENU_WIDTH / 2);
+      xPos = Math.max(16, Math.min(viewportWidth - MENU_WIDTH - 16, xPos));
+
+      setMenuPosition({
+        x: xPos,
+        y: navItemRect.bottom + 8
+      });
+    }
+  }, [navItemRect]);
+
+  const content = menuContent[type];
   if (!content) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="absolute top-full left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-100 z-50"
-          />
-          
-          <motion.div
-            variants={menuVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className="absolute top-full left-0 w-screen bg-white/95 backdrop-blur-md shadow-xl border-t border-gray-100 z-40"
-            onMouseLeave={onClose}
-          >
-            <div className="max-w-7xl mx-auto p-8">
-              <div className="grid grid-cols-12 gap-8">
-                <div className="col-span-8 grid grid-cols-3 gap-8">
-                  {content.sections.map((section, idx) => (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                      className="space-y-6"
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10">
-                          <Player
-                            autoplay
-                            loop
-                            src={section.icon}
-                            style={{ width: '100%', height: '100%' }}
-                          />
-                        </div>
-                        <h3 className="font-bold text-lg text-gray-900">
-                          {section.title}
-                        </h3>
-                      </div>
-                      <div className="space-y-4 pl-4 border-l-2 border-gray-100">
-                        {section.links.map((link, linkIdx) => (
-                          <motion.div
-                            key={linkIdx}
-                            variants={linkVariants}
-                            whileHover="hover"
-                            className="group"
-                          >
-                            <Link
-                              to="#"
-                              className="flex items-center space-x-3 text-gray-600 hover:text-[#b68319] transition-colors"
+        <motion.div
+          key={`menu-${type}`}
+          variants={menuVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="fixed w-[600px] bg-white shadow-xl rounded-xl z-40 overflow-hidden border border-gray-100"
+          style={{
+            left: menuPosition.x,
+            top: menuPosition.y
+          }}
+          onMouseLeave={onClose}
+        >
+          <motion.div className="p-4">
+            <div className="grid grid-cols-6 gap-4">
+              <div className="col-span-4">
+                <div className="space-y-2">
+                  {content.sections[0].links.map((item, idx) => {
+                    const Icon = iconMap[item.icon];
+                    return (
+                      <motion.div
+                        key={`${type}-${idx}`}
+                        variants={itemVariants}
+                        className="group"
+                      >
+                        <Link
+                          to="#"
+                          className="block hover:bg-[#C4933F]/10 rounded-lg p-3 transition-all duration-200"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <motion.div 
+                              className="flex-shrink-0"
+                              initial="initial"
+                              whileHover="hover"
+                              variants={iconVariants}
                             >
-                              <ChevronRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                              <span>{link}</span>
-                            </Link>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ))}
+                              <Icon className="w-5 h-5 text-[#C4933F]" />
+                            </motion.div>
+                            <div className="flex-1">
+                              <h3 className="text-gray-900 text-sm font-medium">
+                                {item.title}
+                              </h3>
+                              <p className="text-gray-500 text-xs mt-0.5">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
                 </div>
-
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="col-span-4"
-                >
-                  <FeaturedCard
-                    image={content.featuredImage}
-                    title={`Featured ${type.charAt(0).toUpperCase() + type.slice(1)}`}
-                    description={`Discover the best ${type} opportunities in Northern Virginia`}
-                  />
-                </motion.div>
               </div>
+
+              <motion.div
+                className="col-span-2"
+                variants={itemVariants}
+              >
+                <div className="relative h-full rounded-lg overflow-hidden group">
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/20 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-80"
+                  />
+                  <motion.img 
+                    src={content.featuredImage}
+                    alt={content.featuredTitle}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 p-4 flex flex-col justify-end">
+                    <h3 className="text-lg font-bold text-white mb-1">
+                      {content.featuredTitle}
+                    </h3>
+                    <p className="text-gray-200 text-xs">
+                      {content.featuredDescription}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
-        </>
+        </motion.div>
       )}
     </AnimatePresence>
   );

@@ -4,7 +4,8 @@ import { Heart, BedDouble, Bath, Square, ArrowRight, MapPin, DollarSign, Calenda
 import { useOutsideClick } from '../hooks/useOutsideClick';
 import { cn } from '../utils/cn';
 
-interface Property {
+// Export the Property interface
+export interface Property {
   id: string;
   title: string;
   location: string;
@@ -175,7 +176,7 @@ const properties: Property[] = [
   }
 ];
 
-const PropertyCard = ({ property, onClick }: { property: Property; onClick: () => void }) => {
+export const PropertyCard = ({ property, onClick }: { property: Property; onClick: () => void }) => {
   const id = useId();
   
   return (
@@ -259,7 +260,7 @@ const PropertyCard = ({ property, onClick }: { property: Property; onClick: () =
   );
 };
 
-const ExpandedCard = ({ property, onClose }: { property: Property; onClose: () => void }) => {
+export const ExpandedCard = ({ property, onClose }: { property: Property; onClose: () => void }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const id = useId();

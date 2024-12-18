@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Send, Menu, X } from 'lucide-react';
+import MegaMenu from './MegaMenu';
+import { MenuType } from '../types/menuTypes';
 import logo from '/src/images/onest.png';
 
 interface NavLink {
   to: string;
   label: string;
   delay: string;
+  megaMenuType?: MenuType;
 }
 
 const Navbar: React.FC = () => {
@@ -14,6 +17,8 @@ const Navbar: React.FC = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<MenuType | null>(null);
+  const [activeNavRect, setActiveNavRect] = useState<DOMRect | null>(null);
 
   useEffect(() => {
     setHasAnimated(true);
@@ -25,9 +30,10 @@ const Navbar: React.FC = () => {
     
     if (currentScrollY < 50) {
       setIsVisible(true);
-    } else if (scrollDelta > 10) { // Only hide if scrolling down significantly
+    } else if (scrollDelta > 10) {
       setIsVisible(false);
-    } else if (scrollDelta < -5) { // Show when scrolling up slightly
+      setActiveMegaMenu(null);
+    } else if (scrollDelta < -5) {
       setIsVisible(true);
     }
     
@@ -59,12 +65,24 @@ const Navbar: React.FC = () => {
   }, [controlNavbar]);
 
   const navLinks: NavLink[] = [
-    { to: '/about', label: 'About Us', delay: '0.7s' },
-    { to: '/buyers', label: 'Buyers', delay: '0.8s' },
-    { to: '/sellers', label: 'Sellers', delay: '0.9s' },
-    { to: '/communities', label: 'Communities', delay: '1s' },
-    { to: '/resources', label: 'Resources', delay: '1.1s' }
+    { to: '/about', label: 'About Us', delay: '0.7s', megaMenuType: 'aboutUs' },
+    { to: '/buyers', label: 'Buyers', delay: '0.8s', megaMenuType: 'buyers' },
+    { to: '/sellers', label: 'Sellers', delay: '0.9s', megaMenuType: 'sellers' },
+    { to: '/communities', label: 'Communities', delay: '1s', megaMenuType: 'communities' },
+    { to: '/resources', label: 'Resources', delay: '1.1s', megaMenuType: 'resources' }
   ];
+
+  const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement>, megaMenuType?: MenuType) => {
+    if (megaMenuType) {
+      setActiveNavRect(event.currentTarget.getBoundingClientRect());
+      setActiveMegaMenu(megaMenuType);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setActiveMegaMenu(null);
+    setActiveNavRect(null);
+  };
 
   return (
     <header 
@@ -73,33 +91,38 @@ const Navbar: React.FC = () => {
       } ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
     >
       <div 
-        className="bg-white rounded-full shadow-lg py-2 opacity-0 animate-fadeIn"
+        className="bg-white rounded-full shadow-lg py-2 opacity-0 animate-fadeIn relative"
         style={{
           animationDelay: '0.3s',
           animationDuration: '0.4s',
           animationFillMode: 'forwards'
         }}
       >
-        <nav className="max-w-[1400px] mx-auto px-8">
+        <nav className="max-w-7xl mx-auto px-8">
           <div className="flex items-center h-14">
             {/* Left Navigation Links */}
             <div className="flex items-center space-x-8 flex-1">
               {navLinks.map((link) => (
-                <Link
+                <div
                   key={link.to}
-                  to={link.to}
-                  className="opacity-0 animate-fadeInUp text-gray-700 relative group hidden md:block"
-                  style={{
-                    animationDelay: link.delay,
-                    animationDuration: '0.4s',
-                    animationFillMode: 'forwards'
-                  }}
+                  onMouseEnter={(e) => handleMouseEnter(e, link.megaMenuType)}
+                  className="relative"
                 >
-                  <span className="relative">
-                    {link.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full" />
-                  </span>
-                </Link>
+                  <Link
+                    to={link.to}
+                    className="opacity-0 animate-fadeInUp text-gray-700 relative group hidden md:block"
+                    style={{
+                      animationDelay: link.delay,
+                      animationDuration: '0.4s',
+                      animationFillMode: 'forwards'
+                    }}
+                  >
+                    <span className="relative">
+                      {link.label}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C4933F] transition-all duration-300 group-hover:w-full" />
+                    </span>
+                  </Link>
+                </div>
               ))}
             </div>
 
@@ -118,7 +141,7 @@ const Navbar: React.FC = () => {
               </Link>
             </div>
 
-            {/* Right Side - Contact and Login Buttons */}
+            {/* Right Side */}
             <div className="flex items-center space-x-6 flex-1 justify-end">
               <Link 
                 to="/contact"
@@ -130,18 +153,18 @@ const Navbar: React.FC = () => {
                 }}
               >
                 <span className="relative inline-flex items-center gap-2">
-                  Contact eNest
+                  Contact oNest
                   <Send 
                     size={16} 
                     className="text-gray-400 transform transition-transform duration-300 group-hover:translate-x-1" 
                   />
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-primary transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C4933F] transition-all duration-300 group-hover:w-full" />
                 </span>
               </Link>
 
               <Link 
                 to="/login"
-                className="opacity-0 animate-fadeInUp px-6 py-2 bg-brand-primary text-white rounded-full hover:bg-brand-light transition-all duration-300 transform hover:scale-105"
+                className="opacity-0 animate-fadeInUp px-6 py-2 bg-[#C4933F] text-white rounded-full hover:bg-[#B38438] transition-all duration-300 transform hover:scale-105"
                 style={{
                   animationDelay: '1.3s',
                   animationDuration: '0.4s',
@@ -167,6 +190,16 @@ const Navbar: React.FC = () => {
             </div>
           </div>
         </nav>
+
+        {/* Mega Menu */}
+        {activeMegaMenu && (
+          <MegaMenu
+            isOpen={!!activeMegaMenu}
+            type={activeMegaMenu}
+            onClose={handleMouseLeave}
+            navItemRect={activeNavRect}
+          />
+        )}
       </div>
 
       {/* Mobile Menu */}
@@ -194,11 +227,11 @@ const Navbar: React.FC = () => {
               className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
-              Contact eNest
+              Contact oNest
             </Link>
             <Link 
               to="/login"
-              className="block px-4 py-2 bg-brand-primary text-white rounded-lg text-center hover:bg-brand-light transition-colors duration-300"
+              className="block px-4 py-2 bg-[#C4933F] text-white rounded-lg text-center hover:bg-[#B38438] transition-colors duration-300"
               onClick={() => setIsMenuOpen(false)}
             >
               Login

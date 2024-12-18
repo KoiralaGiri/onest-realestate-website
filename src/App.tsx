@@ -1,3 +1,4 @@
+// App.tsx
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AOS from 'aos';
@@ -5,11 +6,13 @@ import 'aos/dist/aos.css';
 
 // Shared Components
 import Navbar from './components/navbar';
-import Footer from './components/Footer'
+import Footer from './components/Footer';
+import { ScrollProgress } from './components/ScrollProgress';
 
 // Homepage Components
 import HeroBanner1 from './components/HeroBanner1';
 import ExploreNova from './components/ExploreNova';
+import StateExplorer from './components/stateexplorer';
 import BentoGrid from './components/BentoGrid';
 import HandpickedHomes from './components/HandpickedHomes';
 import Testimonials from './components/Testimonials';
@@ -18,7 +21,6 @@ import AppSection from './components/AppSection';
 
 // Communities Page Components
 import HeroBanner2 from './components/HeroBanner2';
-import { ScrollProgress } from './components/ScrollProgress';
 import { FeaturedCommunities } from './components/FeaturedCommunities';
 import { NeighborhoodMap } from './components/NeighborhoodMap';
 import { MarketInsights } from './components/MarketInsights';
@@ -37,21 +39,25 @@ const About = () => (
     <AboutUs />
   </div>
 );
+
 const Buyers = () => (
   <div className="pt-24">
     <Listings />
   </div>
 );
+
 const Sellers = () => (
   <div className="pt-24">
     <SellerPage />
   </div>
 );
+
 const Tools = () => (
   <div className="pt-24">
     <ToolsPage />
   </div>
 );
+
 const Contact = () => <div className="pt-24">Contact Page</div>;
 const Login = () => <div className="pt-24">Login Page</div>;
 
@@ -61,6 +67,24 @@ const Home = () => {
     <main>
       <HeroBanner1 />
       <ExploreNova />
+      <div className="relative py-16 bg-gray-50">
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50" />
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="relative"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-4">
+              Explore Properties Across the States
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Discover our exclusive listings and expert agents in different states
+            </p>
+          </div>
+          <StateExplorer />
+        </div>
+      </div>
       <BentoGrid />
       <HandpickedHomes />
       <Testimonials />
@@ -74,7 +98,6 @@ const Home = () => {
 const Communities = () => {
   return (
     <main className="min-h-screen relative">
-      <ScrollProgress />
       <HeroBanner2 />
       <div className="relative -mt-16">
         <SectionDivider variant="wave" fromColor="#d4a94d" toColor="#b68319" />
@@ -111,6 +134,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-white">
+        <ScrollProgress />
         <Navbar />
         <Routes>
           {/* Main Routes */}
